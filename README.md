@@ -1,4 +1,4 @@
-# aisenkoch-frontend
+# Eisenkoch-frontend
 
 ## Project setup
 ```
