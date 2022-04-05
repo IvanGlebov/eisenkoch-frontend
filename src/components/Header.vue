@@ -19,16 +19,19 @@ import axios from 'axios'
 
 export default {
   name: "InfoHeader",
+  props:{
+    baseUrl: String
+  },
   data() {
     return {
-      baseUrl: 'localhost:5000',
+      // baseUrl: 'localhost:5000',
       wafflesBaked: '',
       tokensEarned: ''
     }
   },
   methods: {
     getWafflesInfo() {
-      axios.get(`http://${this.$data.baseUrl}/total-waffles`)
+      axios.get(`http://${this.$props.baseUrl}/total-waffles`)
       .then(res => {
         if(res.status !== 200)
           console.log('Error reading waffles amount')
@@ -38,7 +41,7 @@ export default {
       })
     },
     getTokensInfo() {
-      axios.get(`http://${this.$data.baseUrl}/update-balance`)
+      axios.get(`http://${this.$props.baseUrl}/update-balance`)
       .then(res => {
         if(res.status !== 200)
           console.log('Error reading balance')

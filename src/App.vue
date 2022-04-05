@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <info-header/>
+    <info-header :base-url="baseUrl"/>
     <div class="main-content-wrapper">
       <oven-block :status="left_oven" variant="left"/>
       <div class="robo-arm-wrapper">
