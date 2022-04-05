@@ -4,18 +4,18 @@
       <status-message :variant="variant" :status="status" :time-left="123"/>
     </div>
     <div class="waffles-and-steam-wrapper">
-      <img v-if="!status" class="steam-icon" :src="steam" alt="steam image">
+      <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
       <div class="waffles_icon-wrapper"
-           :class="{'waffles_left_idle': variant === 'left' && status,
-                    'waffles_right_idle': variant === 'right' && status}">
+           :class="{'waffles_left_idle': variant === 'left' && status === 'available',
+                    'waffles_right_idle': variant === 'right' && status === 'available'}">
         <img class="waffles_in_progress-icon" :src="waffles_in_progress" alt="waffles in progress image">
       </div>
-      <img v-if="!status" class="steam-icon" :src="steam" alt="steam image">
+      <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
     </div>
-    <img v-if="!status" class="oven-image"
+    <img v-if="status !== 'available'" class="oven-image"
          :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
          :src="oven_in_progress" alt="oven in progress image">
-    <img v-if="status" class="oven-image"
+    <img v-if="status === 'available'" class="oven-image"
          :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
          :src="oven_idle" alt="Oven idling image">
   </div>
@@ -28,7 +28,7 @@ export default {
   name: "OvenBlock",
   props: {
     variant: String,
-    status: Boolean
+    status: String
   },
   components: {
     StatusMessage
@@ -40,7 +40,15 @@ export default {
       steam: require('../assets/steam.svg'),
       waffles_idle: require('../assets/waffles_idle.svg'),
       waffles_in_progress: require('../assets/waffles_in_progress.svg'),
-
+    }
+  },
+  computed: {
+    wafflesStatus() {
+      switch(this.status) {
+        case 'available':
+          return
+      }
+      return true
     }
   }
 }

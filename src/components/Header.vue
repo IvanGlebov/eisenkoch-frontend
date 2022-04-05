@@ -2,21 +2,60 @@
   <div class="header">
     <div class="tokens-wrapper">
       <div class="tokens-earned-header">Заработал токенов:</div>
-      <div class="tokens-earned-content">10,05</div>
+      <div class="tokens-earned-content">{{ tokensEarned !== '' ? tokensEarned : '***,**' }}</div>
     </div>
     <div class="header-title">
       робот, который печёт вафли
     </div>
     <div class="waffles-wrapper">
-      <div class="waffles-baked-header">всего испёк вафель</div>
-      <div class="waffles-baked-content">600</div>
+      <div class="waffles-baked-header">{{ (wafflesBaked !== 'waiting' && wafflesBaked !== '') ? 'всего испёк вафель' : 'Загрузка робота'}}</div>
+      <div class="waffles-baked-content">{{ (wafflesBaked !== 'waiting' && wafflesBaked !== '') ? wafflesBaked : '***'}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: "InfoHeader"
+  name: "InfoHeader",
+  data() {
+    return {
+      baseUrl: 'localhost:5002',
+      wafflesBaked: '',
+      tokensEarned: ''
+    }
+  },
+  methods: {
+    getWafflesInfo() {
+      axios.get(`http://${this.$data.baseUrl}/total-waffles`)
+      .then(res => {
+        if(res.status !== 200)
+          console.log('Error reading waffles amount')
+        else {
+          this.$data.wafflesBaked = res.data.status // Reading waffles amount status
+        }
+      })
+    },
+    getTokensInfo() {
+      axios.get(`http://${this.$data.baseUrl}/update-balance`)
+      .then(res => {
+        if(res.status !== 200)
+          console.log('Error reading balance')
+        else {
+          this.tokensEarned = res.data.balance // Reading balance of robot
+        }
+      })
+    }
+  },
+  mounted() {
+    this.getWafflesInfo()
+    this.getTokensInfo()
+    setInterval(() => {
+      this.getWafflesInfo()
+      this.getTokensInfo()
+    }, 30000)
+  }
 }
 </script>
 

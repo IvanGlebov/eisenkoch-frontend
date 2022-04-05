@@ -1,10 +1,13 @@
 <template>
   <div class="status-wrapper">
-    <div class="status-content" :class="{'idle-wrapper': status}">{{ status ? 'Готов печь вафли' : 'будет готово через ' + timeToString(timeLeft) }}</div>
+    <div class="status-content" :class="{'idle-wrapper': status === 'available'}"
+    >
+      {{ statusContent }}
+    </div>
     <div class="status-message-corner" :class="{
           'left-corner': variant === 'left',
           'right-corner': variant === 'right',
-          'idle-corner': status
+          'idle-corner': status === 'available'
     }"></div>
   </div>
 </template>
@@ -19,7 +22,7 @@ export default {
         return (prop === 'left' || prop === 'right')
       }
     },
-    status: Boolean,
+    status: String,
     timeLeft: Number
   },
   methods: {
@@ -27,6 +30,24 @@ export default {
       let minutes = number / 60
       let seconds = number % 60
       return minutes.toFixed(0) + ':' + ((seconds > 9) ? seconds : '0' + seconds)
+    }
+  },
+  computed: {
+    statusContent() {
+      console.log('Status messaga')
+      console.log(this)
+      switch(this.status){
+        case 'available':
+          return 'Готов печь вафли'
+        case 'busy':
+          return 'Заливка теста'
+        case 'cooking':
+          return 'будуте готов через ' + this.timeToString(this.timeLeft)
+        case 'finishing':
+          return 'выгрузка'
+        default:
+          return 'Error'
+      }
     }
   }
 }

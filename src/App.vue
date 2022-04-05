@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import InfoHeader from './components/Header'
 import FooterLinks from './components/Footer'
 import OvenBlock from './components/Oven'
@@ -29,14 +31,80 @@ export default {
   data() {
     return {
       robo_arm: require('./assets/robo_arm.svg'),
-      left_oven: false,
-      right_oven: true,
+      left_oven: 'available', //    4 states ->
+      right_oven: 'available', // -> available, busy, cooking, finishing
+      left_oven_baking_duration: '',
+      left_oven_left: '',
+      right_oven_baking_duration: '',
+      right_oven_left: '',
+      left_oven_status: true,
+      right_oven_status: true,
+      updateInterval: 1000,
+      baseUrl: 'localhost:5002'
+    }
+  },
+  methods: {
+    getLeftOvenInfo(){
+      axios.get(`http://${this.$data.baseUrl}/status-left`)
+      .then(res => {
+        if(res.status !== 200)
+          console.log('Error requesting oven info')
+        else {
+          this.$data.left_oven = res.data.status // Reading oven status
+          this.$data.left_oven_baking_duration = res.data.baking_duration // Reading baking duration
+        }
+      })
+    },
+    getRightOvenInfo(){
+      axios.get(`http://${this.$data.baseUrl}/status-right`)
+          .then(res => {
+            if(res.status !== 200)
+              console.log('Error requesting oven info')
+            else {
+              this.$data.right_oven = res.data.status // Reading oven status
+              this.$data.right_oven_baking_duration = res.data.baking_duration // Reading baking duration
+            }
+          })
+    },
+
+    leftOvenWatcher(){
+      switch(this.$data.left_oven){
+        case 'cooking':
+          if(!this.$data.left_oven_status) {
+            this.$data.left_oven = true
+            this.$data.left_oven_left = this.$data.left_oven_baking_duration
+          } else {
+            this.$data.left_oven_left = this.$data.left_oven_left - this.$data.updateInterval
+            if(this.$data.left_oven_left <= 0) this.$data.left_oven_left = 0
+          }
+          break
+        default:
+          this.getLeftOvenInfo()
+      }
+    },
+    rightOvenWatcher(){
+      switch(this.$data.right_oven){
+        case 'cooking':
+          if(!this.$data.right_oven_status) {
+            this.$data.right_oven = true
+            this.$data.right_oven_left = this.$data.right_oven_baking_duration
+          } else {
+            this.$data.right_oven_left = this.$data.right_oven_left - this.$data.updateInterval
+            if(this.$data.right_oven_left <= 0) this.$data.right_oven_left = 0
+          }
+          break
+        default:
+          this.getRightOvenInfo()
+      }
     }
   },
   mounted() {
     setInterval(() => {
-      this.$data.left_oven = !this.$data.left_oven
-      this.$data.right_oven = !this.$data.right_oven
+      this.leftOvenWatcher()
+      this.rightOvenWatcher()
+
+      // this.$data.left_oven = !this.$data.left_oven
+      // this.$data.right_oven = !this.$data.right_oven
     }, 10000)
 
   }
