@@ -1,7 +1,7 @@
 <template>
   <div class="waffle-wrapper" :class="{'left-wrapper': variant === 'left', 'right-wrapper': variant === 'right'}">
     <div class="status-message-wrapper">
-      <status-message :variant="variant" :status="status" :time-left="123"/>
+      <status-message :variant="variant" :status="status" :time-left="timeLeft"/>
     </div>
     <div class="waffles-and-steam-wrapper">
       <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
@@ -28,7 +28,8 @@ export default {
   name: "OvenBlock",
   props: {
     variant: String,
-    status: String
+    status: String,
+    timeLeft: String,
   },
   components: {
     StatusMessage

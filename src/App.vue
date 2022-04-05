@@ -2,11 +2,11 @@
   <div class="app-wrapper">
     <info-header :base-url="baseUrl"/>
     <div class="main-content-wrapper">
-      <oven-block :status="left_oven" variant="left"/>
+      <oven-block :status="left_oven" variant="left" :time-left="left_oven_left"/>
       <div class="robo-arm-wrapper">
         <img :src="robo_arm" alt="robotic arm image">
       </div>
-      <oven-block :status="right_oven" variant="right"/>
+      <oven-block :status="right_oven" variant="right" :time-left="right_oven_left"/>
     </div>
     <footer-links/>
   </div>
