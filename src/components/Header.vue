@@ -21,7 +21,7 @@ export default {
   name: "InfoHeader",
   data() {
     return {
-      baseUrl: 'localhost:5002',
+      baseUrl: 'localhost:5000',
       wafflesBaked: '',
       tokensEarned: ''
     }

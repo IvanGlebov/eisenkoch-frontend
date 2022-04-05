@@ -40,7 +40,7 @@ export default {
       left_oven_status: true,
       right_oven_status: true,
       updateInterval: 1000,
-      baseUrl: 'localhost:5002'
+      baseUrl: 'localhost:5000'
     }
   },
   methods: {
