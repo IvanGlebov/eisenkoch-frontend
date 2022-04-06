@@ -70,19 +70,26 @@ export default {
 .right-wrapper {
   align-items: flex-start;
 }
+.left-wrapper > .waffles-and-steam-wrapper {
+  margin-right: 90px;
+}
+.right-wrapper > .waffles-and-steam-wrapper {
+  margin-left: 60px;
+}
+
 .status-message-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 150px;
+  margin-top: 106px;
 }
 .waffles-and-steam-wrapper {
-  margin-right: 85px;
-  height: 200px;
+  margin-right: 35px;
+  height: 142px;
   display: flex;
   align-items: flex-end;
-  margin-bottom: 40px;
-  gap: 20px;
+  margin-bottom: 28px;
+  gap: 14px;
   position: relative;
 }
 
@@ -91,16 +98,16 @@ export default {
 }
 
 .oven-image {
-  width: 400px;
+  width: 284px;
 }
 .oven-image.left-oven{
-  margin-right: 125px;
+  margin-right: 89px;
 }
 .oven-image.right-oven  {
-  margin-left: 50px;
+  margin-left: 65px;
 }
 .steam-icon {
-  max-height: 125px;
+  max-height: 63px;
   animation: 1.5s steam_cycle infinite linear;
 }
 .steam-icon:nth-child(1){
@@ -116,8 +123,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 190px;
-  width: 190px;
+  height: 135px;
+  width: 135px;
   border-radius: 50%;
 
   transition: all .5s;
@@ -131,12 +138,12 @@ export default {
   position: absolute;
   background-color: var(--color-white);
   border-radius: 50%;
-  width: 160px;
-  height: 160px;
-  padding: 30px;
-  transform: translateY(20px) translateX(-240px);
-  right: 100px;
-  top: 40px;
+  width: 114px;
+  height: 114px;
+  padding: 21px;
+  transform: translateY(20px) translateX(-230px);
+  right: 10px;
+  top: 0;
   transition: all .5s;
 }
 
@@ -144,47 +151,30 @@ export default {
   position: absolute;
   background-color: var(--color-white);
   border-radius: 50%;
-  width: 160px;
-  height: 160px;
-  padding: 30px;
+  width: 114px;
+  height: 114px;
+  padding: 21px;
 
-  left: 150px;
-  top: 40px;
-  transform: translateY(20px) translateX(220px);
+  left: 55px;
+  top: 0;
+  transform: translateY(20px) translateX(200px);
 
   transition: all .5s;
 }
-
-/*.waffles_idle_right-icon {*/
-/*  position: absolute;*/
-/*  left: 370px;*/
-/*  top: 70px;*/
-/*  height: 170px !important;*/
-/*}*/
-
-/*.waffles_idle_left-icon {*/
-/*  position: absolute;*/
-/*  height: 170px !important;*/
-/*  right: 360px;*/
-/*  top: 70px;*/
-/*}*/
 
 
 
 @keyframes steam_cycle {
   0% {
-    /*transform: scale(0);*/
     opacity: 0;
-    width: 128px;
+    width: 63px;
     height: 0;
   }
   100%{
-    /*transform: scale(1);*/
     opacity: 1;
-    width: 128px;
-    height: 125px;
+    width: 63px;
+    height: 63px;
   }
-
 }
 
 

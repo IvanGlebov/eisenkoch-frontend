@@ -59,7 +59,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 570px;
+  width: 405px;
   position: relative;
 }
 
@@ -70,7 +70,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   color: var(--color-white);
   transition: all .5s;
@@ -80,21 +80,21 @@ export default {
   position: absolute;
   height: 0;
   width: 0;
-  left: 490px;
+  left: 348px;
   top: 79px;
 }
 
 .left-corner {
-  border: 80px solid transparent;
+  border: 57px solid transparent;
   border-right: 0;
-  border-top: 80px solid var(--color-yellow);
+  border-top: 57px solid var(--color-yellow);
   transition: all .5s;
 }
 
 .right-corner {
-  border: 80px solid transparent;
+  border: 57px solid transparent;
   border-left: 0;
-  border-top: 80px solid var(--color-yellow);
+  border-top: 57px solid var(--color-yellow);
   left: 0;
   transition: all .5s;
 }
@@ -105,7 +105,7 @@ export default {
 }
 
 .idle-corner {
-  border-top: 80px solid var(--color-green);
+  border-top: 57px solid var(--color-green);
   transition: all .5s;
 }
 

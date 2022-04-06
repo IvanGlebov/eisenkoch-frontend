@@ -18,7 +18,6 @@ import axios from 'axios'
 import InfoHeader from './components/Header'
 import FooterLinks from './components/Footer'
 import OvenBlock from './components/Oven'
-// import StatusMessage from "@/components/StatusMessage";
 
 
 export default {
@@ -102,9 +101,13 @@ export default {
     setInterval(() => {
       this.leftOvenWatcher()
       this.rightOvenWatcher()
-
-      // this.$data.left_oven = !this.$data.left_oven
-      // this.$data.right_oven = !this.$data.right_oven
+      // if(this.$data.left_oven === 'available') {
+      //   this.$data.left_oven = 'busy'
+      //   this.$data.right_oven = 'busy'
+      // } else {
+      //   this.$data.left_oven = 'available'
+      //   this.$data.right_oven = 'available'
+      // }
     }, 10000)
 
   }
@@ -128,7 +131,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Yeseva One', cursive;
-  font-size: 14px;
 }
 
 .app-wrapper {
@@ -140,7 +142,7 @@ body {
 }
 
 .main-content-wrapper {
-  height: calc(100vh - 359px);
+  height: calc(100vh - 255px);
   max-width: 100vw;
   display: grid;
   grid-template-columns: 2fr 1.4fr 2fr;
@@ -156,12 +158,12 @@ body {
 .robo-arm-wrapper {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
 }
 
 .robo-arm-wrapper > img {
-  height: 550px;
-  margin-bottom: -20px;
+  height: 390px;
+  margin-bottom: -10px;
 }
-
 
 </style>

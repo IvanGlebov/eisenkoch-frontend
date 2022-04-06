@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      // baseUrl: 'localhost:5000',
       wafflesBaked: '',
       tokensEarned: ''
     }
@@ -64,7 +63,7 @@ export default {
 
 <style scoped>
 .header {
-  height: 170px;
+  height: 121px;
   background-color: var(--color-dark-gray);
   display: flex;
   justify-content: center;
@@ -73,8 +72,8 @@ export default {
   background-image: url('../assets/header_back.svg');
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100px;
-  font-size: 3rem;
+  /*min-height: 100px;*/
+  font-size: 1.5rem;
   padding: 20px 120px;
   display: flex;
   justify-content: center;
@@ -91,7 +90,7 @@ export default {
 
   font-family: 'Roboto Mono', monospace;
   text-transform: uppercase;
-  font-size: 1.7rem;
+  font-size: 1rem;
 }
 .waffles-wrapper {
   align-items: flex-start;

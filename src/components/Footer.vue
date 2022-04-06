@@ -4,8 +4,7 @@
       <div class="qr-code-wrapper">
         <img :src="videoQr" alt="Video qr code">
       </div>
-      <div class="footer-video-content">
-      </div>
+      <div class="footer-video-content"></div>
     </div>
     <div class="footer-links-wrapper">
       <div class="qr-code-wrapper">
@@ -24,8 +23,6 @@
     <div class="footer-logo-wrapper">
       <img :src="logoGear" alt="gear logotype part">
       <img :src="logoName" alt="name logotype part">
-<!--      <img :src="logoSvg" alt="Coffeenomics logo">-->
-
     </div>
   </footer>
 </template>
@@ -50,7 +47,7 @@ export default {
 <style scoped>
 
 .footer {
-  height: 189px;
+  height: 134px;
   background-color: var(--color-dark-gray);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -58,23 +55,23 @@ export default {
 
 .footer-video-wrapper {
   display: flex;
-  padding: 30px;
-  height: 99px;
+  padding: 21px;
+  height: 92px;
 }
 .footer-video-content {
   margin-left: 20px;
   width: 216px;
   background-color: var(--color-black);
-  height: 129px;
+  height: 92px;
 }
 .qr-code-wrapper {
-  height: 69px;
+  height: 49px;
   background-color: var(--color-black);
-  padding: 30px;
+  padding: 21px;
   position: relative;
 }
 .qr-code-wrapper > img {
-  height: 69px;
+  height: 49px;
 }
 
 .footer-links-wrapper {
@@ -88,26 +85,24 @@ export default {
   background-color: var(--color-blue-light);
   text-transform: uppercase;
   font-family: 'Roboto Mono', monospace;
+  font-size: .6rem;
   color: var(--color-white);
   position: absolute;
   padding: 5px;
 }
-
 .qr-footnote#coffeenomica{
   left: 35px;
   transform: rotate(-4deg);
-  top: 109px;
+  top: 75px;
 }
-
 .qr-footnote#multiAgent {
-  width: 130px;
+  width: 85px;
   left: 35px;
   transform: rotate(3deg);
-  top: 109px;
+  top: 75px;
 }
-
 .qr-footnote#robonomicsNetwork {
-  top: 109px;
+  top: 75px;
   left: 30px;
 }
 
@@ -115,21 +110,21 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 30px;
+  padding: 21px;
   position: relative;
 }
 .footer-logo-wrapper > img {
   position: absolute;
-  height: 129px;
+  height: 85px;
 }
 
 .footer-logo-wrapper > img:nth-child(1) {
-  right: 95px;
+  right: 67px;
   animation: 6s rotate linear infinite;
 }
 
 .footer-logo-wrapper > img:not(:nth-child(1)) {
-  top: 50px;
+  top: 35px;
 }
 
 @keyframes rotate {
