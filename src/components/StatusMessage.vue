@@ -59,18 +59,19 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 405px;
+  width: 26vw;
   position: relative;
 }
 
 .status-content {
   background-color: var(--color-yellow);
-  height: 81px;
+  height: 7vh;
   font-family: 'Roboto Mono', monospace;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
+  font-weight: bold;
   text-transform: uppercase;
   color: var(--color-white);
   transition: all .5s;
@@ -80,21 +81,21 @@ export default {
   position: absolute;
   height: 0;
   width: 0;
-  left: 348px;
-  top: 79px;
+  left: calc(26vw - 7vh);
+  top: calc(7vh - 1px);
 }
 
 .left-corner {
-  border: 57px solid transparent;
+  border: 7vh solid transparent;
   border-right: 0;
-  border-top: 57px solid var(--color-yellow);
+  border-top: 7vh solid var(--color-yellow);
   transition: all .5s;
 }
 
 .right-corner {
-  border: 57px solid transparent;
+  border: 7vh solid transparent;
   border-left: 0;
-  border-top: 57px solid var(--color-yellow);
+  border-top: 7vh solid var(--color-yellow);
   left: 0;
   transition: all .5s;
 }
@@ -105,8 +106,14 @@ export default {
 }
 
 .idle-corner {
-  border-top: 57px solid var(--color-green);
+  border-top: 7vh solid var(--color-green);
   transition: all .5s;
+}
+
+@media screen and (min-height: 900px) {
+  .status-content {
+    font-size: 2rem;
+  }
 }
 
 </style>

@@ -3,21 +3,24 @@
     <div class="status-message-wrapper">
       <status-message :variant="variant" :status="status" :time-left="timeLeft"/>
     </div>
-    <div class="waffles-and-steam-wrapper">
-      <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
-      <div class="waffles_icon-wrapper"
-           :class="{'waffles_left_idle': variant === 'left' && status === 'available',
+    <div class="oven-and-waffles-wrapper">
+      <div class="waffles-and-steam-wrapper">
+        <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
+        <div class="waffles_icon-wrapper"
+             :class="{'waffles_left_idle': variant === 'left' && status === 'available',
                     'waffles_right_idle': variant === 'right' && status === 'available'}">
-        <img class="waffles_in_progress-icon" :src="waffles_in_progress" alt="waffles in progress image">
+          <img class="waffles_in_progress-icon" :src="waffles_in_progress" alt="waffles in progress image">
+        </div>
+        <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
       </div>
-      <img v-if="status !== 'available'" class="steam-icon" :src="steam" alt="steam image">
+      <img v-if="status !== 'available'" class="oven-image"
+           :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
+           :src="oven_in_progress" alt="oven in progress image">
+      <img v-if="status === 'available'" class="oven-image"
+           :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
+           :src="oven_idle" alt="Oven idling image">
     </div>
-    <img v-if="status !== 'available'" class="oven-image"
-         :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
-         :src="oven_in_progress" alt="oven in progress image">
-    <img v-if="status === 'available'" class="oven-image"
-         :class="{'left-oven': variant === 'left', 'right-oven': variant === 'right' }"
-         :src="oven_idle" alt="Oven idling image">
+
   </div>
 </template>
 
@@ -64,6 +67,11 @@ export default {
   height: inherit;
 }
 
+.oven-and-waffles-wrapper {
+  position: relative;
+  display: flex;
+}
+
 .left-wrapper {
   align-items: flex-end;
 }
@@ -81,16 +89,23 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 106px;
+  margin-top: 80px;
 }
 .waffles-and-steam-wrapper {
-  margin-right: 35px;
-  height: 142px;
+  height: 9vw;
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 28px;
   gap: 14px;
-  position: relative;
+  bottom: 30vh;
+  position: absolute;
+}
+
+.left-wrapper .waffles-and-steam-wrapper {
+  align-items: center;
+}
+
+.right-wrapper .waffles-and-steam-wrapper {
+  margin-left: 4.5vw;
+  align-items: center;
 }
 
 .waffles-and-steam-wrapper > img {
@@ -98,7 +113,8 @@ export default {
 }
 
 .oven-image {
-  width: 284px;
+  /*width: 284px;*/
+  width: 22vw;
 }
 .oven-image.left-oven{
   margin-right: 89px;
@@ -107,7 +123,7 @@ export default {
   margin-left: 65px;
 }
 .steam-icon {
-  max-height: 63px;
+  max-height: 6vw;
   animation: 1.5s steam_cycle infinite linear;
 }
 .steam-icon:nth-child(1){
@@ -118,13 +134,12 @@ export default {
   transform: rotateY(180deg);
 }
 
-
 .waffles_icon-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 135px;
-  width: 135px;
+  height: 9vw;
+  width: 9vw;
   border-radius: 50%;
 
   transition: all .5s;
@@ -138,27 +153,44 @@ export default {
   position: absolute;
   background-color: var(--color-white);
   border-radius: 50%;
-  width: 114px;
-  height: 114px;
-  padding: 21px;
-  transform: translateY(20px) translateX(-230px);
-  right: 10px;
-  top: 0;
+  /*width: 114px;*/
+  width: 7vw;
+  /*height: 114px;*/
+  height: 7vw;
+  /*padding: 21px;*/
+  padding: 1.5vw;
+
+  /*transform: translateY(20px) translateX(-230px);*/
+  /*left: 140px;*/
+  /*top: -10px;*/
+  left: 6vw;
+  top: -1vh;
+  transform: translateY(4.5vh) translateX(-11.5vw);
+
   transition: all .5s;
+}
+
+.right-wrapper .waffles_icon-wrapper {
+  transform: rotateY(180deg);
 }
 
 .waffles_right_idle {
   position: absolute;
   background-color: var(--color-white);
   border-radius: 50%;
-  width: 114px;
-  height: 114px;
-  padding: 21px;
+  /*width: 114px;*/
+  width: 7vw;
+  /*height: 114px;*/
+  height: 7vw;
+  /*padding: 21px;*/
+  padding: 1.5vw;
 
-  left: 55px;
-  top: 0;
-  transform: translateY(20px) translateX(200px);
-
+  /*left: 55px;*/
+  /*top: 0;*/
+  left: 5vw;
+  top: -1vh;
+  transform: translateY(4vh) translateX(11vw) rotateY(180deg) !important;
+  /*transform: rotateY(180deg) !important;*/
   transition: all .5s;
 }
 
@@ -167,13 +199,13 @@ export default {
 @keyframes steam_cycle {
   0% {
     opacity: 0;
-    width: 63px;
+    width: 6vw;
     height: 0;
   }
   100%{
     opacity: 1;
-    width: 63px;
-    height: 63px;
+    width: 6vw;
+    height: 6vw;
   }
 }
 

@@ -63,7 +63,8 @@ export default {
 
 <style scoped>
 .header {
-  height: 121px;
+  /*min-height: 121px;*/
+  min-height: 14vh;
   background-color: var(--color-dark-gray);
   display: flex;
   justify-content: center;
@@ -72,9 +73,9 @@ export default {
   background-image: url('../assets/header_back.svg');
   background-position: center;
   background-repeat: no-repeat;
-  /*min-height: 100px;*/
   font-size: 1.5rem;
-  padding: 20px 120px;
+  margin: 10px 0;
+  padding: 0 10vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,20 +103,30 @@ export default {
 .tokens-earned-content,
 .waffles-baked-header,
 .waffles-baked-content {
-  padding: 10px;
+  padding: 5px 10px;
   background-color: var(--color-white);
 }
 .tokens-earned-header {
   transform: rotate(4deg) translatey(-2px);
 }
 .tokens-earned-content {
-  transform: translatey(6px) translatex(-31px);
+  transform: translatey(4px) translatex(-10px);
 }
 .waffles-baked-header {
   transform: rotate(-4deg) translatey(-2px);
 }
 .waffles-baked-content {
-  transform: translateY(6px) translateX(31px);
+  transform: translateY(4px) translateX(10px);
+}
+
+@media screen and (min-height: 900px) {
+  .header-title {
+    font-size: 2.3rem;
+  }
+
+  .tokens-wrapper, .waffles-wrapper {
+    font-size: 1.4rem;
+  }
 }
 
 </style>

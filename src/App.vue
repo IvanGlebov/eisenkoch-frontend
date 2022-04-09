@@ -5,6 +5,8 @@
       <oven-block :status="left_oven" variant="left" :time-left="left_oven_left"/>
       <div class="robo-arm-wrapper">
         <img :src="robo_arm" alt="robotic arm image">
+<!--        <img :src="robo_arm_top" alt="robotic arm image">-->
+<!--        <img :src="robo_arm_base" alt="robotic arm image">-->
       </div>
       <oven-block :status="right_oven" variant="right" :time-left="right_oven_left"/>
     </div>
@@ -30,6 +32,8 @@ export default {
   data() {
     return {
       robo_arm: require('./assets/robo_arm.svg'),
+      robo_arm_top: require('./assets/arm_top.svg'),
+      robo_arm_base: require('./assets/arm_base.svg'),
       left_oven: 'available', //    4 states ->
       right_oven: 'available', // -> available, busy, cooking, finishing
       left_oven_baking_duration: '',
@@ -101,6 +105,7 @@ export default {
     setInterval(() => {
       this.leftOvenWatcher()
       this.rightOvenWatcher()
+
       // if(this.$data.left_oven === 'available') {
       //   this.$data.left_oven = 'busy'
       //   this.$data.right_oven = 'busy'
@@ -108,7 +113,7 @@ export default {
       //   this.$data.left_oven = 'available'
       //   this.$data.right_oven = 'available'
       // }
-    }, 10000)
+    }, 1000)
 
   }
 }
@@ -116,7 +121,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 :root {
   --color-dark-gray: #181C20;
   --color-black: #000000;
@@ -142,7 +147,8 @@ body {
 }
 
 .main-content-wrapper {
-  height: calc(100vh - 255px);
+  /*height: calc(100vh - 255px);*/
+  height: 100%;
   max-width: 100vw;
   display: grid;
   grid-template-columns: 2fr 1.4fr 2fr;
@@ -159,11 +165,14 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  position: relative;
 }
 
 .robo-arm-wrapper > img {
-  height: 390px;
+  height: calc(100% - 70px);
   margin-bottom: -10px;
+  position: absolute;
+  left: -30px;
 }
 
 </style>

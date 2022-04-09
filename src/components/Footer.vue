@@ -4,7 +4,14 @@
       <div class="qr-code-wrapper">
         <img :src="videoQr" alt="Video qr code">
       </div>
-      <div class="footer-video-content"></div>
+      <div class="footer-video-content">
+        <iframe src="https://www.youtube.com/embed/UKAM6_tFuXk?version=3&playlist=UKAM6_tFuXk&loop=1&autoplay=1"
+                title="Eisenkoch story"
+                frameborder="0"
+                allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+      </div>
     </div>
     <div class="footer-links-wrapper">
       <div class="qr-code-wrapper">
@@ -38,7 +45,8 @@ export default {
       multiAgentQr: require('../assets/multiAgentQr.svg'),
       robonomicsNetworkQr: require('../assets/robonomicsNetworkQr.svg'),
       logoGear: require('../assets/logo_gear.svg'),
-      logoName: require('../assets/logo_name.svg')
+      logoName: require('../assets/logo_name.svg'),
+      videoLink: "https://www.youtube.com/watch?v=UKAM6_tFuXk"
     }
   }
 }
@@ -47,31 +55,43 @@ export default {
 <style scoped>
 
 .footer {
-  height: 134px;
+  /*height: 134px;*/
+  min-height: 15vh;
   background-color: var(--color-dark-gray);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  z-index: 1;
 }
 
 .footer-video-wrapper {
   display: flex;
-  padding: 21px;
-  height: 92px;
+  padding: 2vh;
+  height: 11vh;
 }
+
 .footer-video-content {
   margin-left: 20px;
   width: 216px;
-  background-color: var(--color-black);
-  height: 92px;
+  /*background-color: var(--color-black);*/
+  height: 11vh;
 }
+
+.footer-video-content > iframe {
+  height: inherit;
+  width: inherit;
+}
+
 .qr-code-wrapper {
-  height: 49px;
+  /*height: 61px;*/
+  height: 7vh;
   background-color: var(--color-black);
-  padding: 21px;
+  padding: 2vh;
   position: relative;
 }
+
 .qr-code-wrapper > img {
-  height: 49px;
+  /*height: 61px;*/
+  height: 7vh;
 }
 
 .footer-links-wrapper {
@@ -79,6 +99,15 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+}
+
+.footer-links-wrapper > .qr-code-wrapper {
+  /*padding-bottom: 26px;*/
+  padding-top: 1vh;
+}
+
+.footer-links-wrapper > .qr-code-wrapper > img {
+  height: 7vh;
 }
 
 .qr-footnote {
@@ -90,19 +119,22 @@ export default {
   position: absolute;
   padding: 5px;
 }
-.qr-footnote#coffeenomica{
+
+.qr-footnote#coffeenomica {
   left: 35px;
   transform: rotate(-4deg);
-  top: 75px;
+  top: 8.4vh;
 }
+
 .qr-footnote#multiAgent {
   width: 85px;
   left: 35px;
   transform: rotate(3deg);
-  top: 75px;
+  top: 8.4vh;
 }
+
 .qr-footnote#robonomicsNetwork {
-  top: 75px;
+  top: 8.4vh;
   left: 30px;
 }
 
@@ -113,18 +145,33 @@ export default {
   padding: 21px;
   position: relative;
 }
+
 .footer-logo-wrapper > img {
   position: absolute;
-  height: 85px;
+  height: 10vh;
+  top: 2vh;
 }
 
 .footer-logo-wrapper > img:nth-child(1) {
-  right: 67px;
+  right: 7vh;
   animation: 6s rotate linear infinite;
 }
 
 .footer-logo-wrapper > img:not(:nth-child(1)) {
-  top: 35px;
+  right: 4.7vh;
+  height: 7vh;
+  top: 5vh;
+}
+
+@media screen and (min-height: 900px) {
+  .qr-footnote {
+    /*height: 50px;*/
+    font-size: .8rem;
+  }
+
+  .qr-footnote#multiAgent {
+    width: 110px;
+  }
 }
 
 @keyframes rotate {
@@ -135,5 +182,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>
