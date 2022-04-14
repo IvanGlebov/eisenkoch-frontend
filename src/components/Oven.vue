@@ -32,7 +32,7 @@ export default {
   props: {
     variant: String,
     status: String,
-    timeLeft: String,
+    timeLeft: Number,
   },
   components: {
     StatusMessage

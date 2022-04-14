@@ -5,8 +5,8 @@
       <oven-block :status="left_oven" variant="left" :time-left="left_oven_left"/>
       <div class="robo-arm-wrapper">
         <img :src="robo_arm" alt="robotic arm image">
-<!--        <img :src="robo_arm_top" alt="robotic arm image">-->
-<!--        <img :src="robo_arm_base" alt="robotic arm image">-->
+        <!--        <img :src="robo_arm_top" alt="robotic arm image">-->
+        <!--        <img :src="robo_arm_base" alt="robotic arm image">-->
       </div>
       <oven-block :status="right_oven" variant="right" :time-left="right_oven_left"/>
     </div>
@@ -36,65 +36,63 @@ export default {
       robo_arm_base: require('./assets/arm_base.svg'),
       left_oven: 'available', //    4 states ->
       right_oven: 'available', // -> available, busy, cooking, finishing
-      left_oven_baking_duration: '',
-      left_oven_left: '',
-      right_oven_baking_duration: '',
-      right_oven_left: '',
-      left_oven_status: true,
-      right_oven_status: true,
+      left_oven_baking_duration: 100,
+      left_oven_left: 1,
+      right_oven_baking_duration: 100,
+      right_oven_left: 1,
+      left_oven_status: false,
+      right_oven_status: false,
       updateInterval: 1000,
       baseUrl: 'localhost:5000'
     }
   },
   methods: {
-    getLeftOvenInfo(){
-      axios.get(`http://${this.$data.baseUrl}/status-left`)
-      .then(res => {
-        if(res.status !== 200)
-          console.log('Error requesting oven info')
-        else {
-          this.$data.left_oven = res.data.status // Reading oven status
-          this.$data.left_oven_baking_duration = res.data.baking_duration // Reading baking duration
-        }
-      })
-    },
-    getRightOvenInfo(){
-      axios.get(`http://${this.$data.baseUrl}/status-right`)
+    getLeftOvenInfo() {
+      axios.get(`http://${ this.$data.baseUrl }/status-left`)
           .then(res => {
-            if(res.status !== 200)
+            if (res.status !== 200)
+              console.log('Error requesting oven info')
+            else {
+              this.$data.left_oven = res.data.status // Reading oven status
+              this.$data.left_oven_left = res.data.baking_duration
+              this.$data.left_oven_baking_duration = res.data.baking_duration // Reading baking duration
+            }
+          })
+    },
+    getRightOvenInfo() {
+      axios.get(`http://${ this.$data.baseUrl }/status-right`)
+          .then(res => {
+            if (res.status !== 200)
               console.log('Error requesting oven info')
             else {
               this.$data.right_oven = res.data.status // Reading oven status
+              this.$data.right_oven_left = res.data.baking_duration
               this.$data.right_oven_baking_duration = res.data.baking_duration // Reading baking duration
             }
           })
     },
 
-    leftOvenWatcher(){
-      switch(this.$data.left_oven){
+    leftOvenWatcher() {
+      switch (this.$data.left_oven) {
         case 'cooking':
-          if(!this.$data.left_oven_status) {
-            this.$data.left_oven = true
-            this.$data.left_oven_left = this.$data.left_oven_baking_duration
-          } else {
-            this.$data.left_oven_left = this.$data.left_oven_left - this.$data.updateInterval
-            if(this.$data.left_oven_left <= 0) this.$data.left_oven_left = 0
+          if (this.$data.left_oven_left <= 0) {
+            this.$data.left_oven_left = 0
+            this.$data.left_oven = 'busy'
           }
+          this.$data.left_oven_left = this.$data.left_oven_left - this.$data.updateInterval / 1000
           break
         default:
           this.getLeftOvenInfo()
       }
     },
-    rightOvenWatcher(){
-      switch(this.$data.right_oven){
+    rightOvenWatcher() {
+      switch (this.$data.right_oven) {
         case 'cooking':
-          if(!this.$data.right_oven_status) {
-            this.$data.right_oven = true
-            this.$data.right_oven_left = this.$data.right_oven_baking_duration
-          } else {
-            this.$data.right_oven_left = this.$data.right_oven_left - this.$data.updateInterval
-            if(this.$data.right_oven_left <= 0) this.$data.right_oven_left = 0
+          if (this.$data.right_oven_left <= 0) {
+            this.$data.right_oven_left = 0
+            this.$data.right_oven = 'busy'
           }
+          this.$data.right_oven_left = this.$data.right_oven_left - this.$data.updateInterval / 1000
           break
         default:
           this.getRightOvenInfo()
@@ -122,6 +120,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
 :root {
   --color-dark-gray: #181C20;
   --color-black: #000000;
