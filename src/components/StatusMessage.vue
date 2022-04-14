@@ -42,7 +42,7 @@ export default {
         case 'busy':
           return 'Заливка теста'
         case 'cooking':
-          return 'будуте готов через ' + this.timeToString(this.timeLeft)
+          return 'будут готово через ' + this.timeToString(this.timeLeft)
         case 'finishing':
           return 'выгрузка'
         default:
