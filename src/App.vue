@@ -36,10 +36,10 @@ export default {
       robo_arm_base: require('./assets/arm_base.svg'),
       left_oven: 'available', //    4 states ->
       right_oven: 'available', // -> available, busy, cooking, finishing
-      left_oven_baking_duration: 100,
-      left_oven_left: 1,
-      right_oven_baking_duration: 100,
-      right_oven_left: 1,
+      left_oven_baking_duration: 0,
+      left_oven_left: 0,
+      right_oven_baking_duration: 0,
+      right_oven_left: 0,
       left_oven_status: false,
       right_oven_status: false,
       updateInterval: 1000,
