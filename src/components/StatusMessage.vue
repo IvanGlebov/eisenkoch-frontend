@@ -34,8 +34,8 @@ export default {
   },
   computed: {
     statusContent() {
-      console.log('Status messaga')
-      console.log(this)
+      // console.log('Status message')
+      // console.log(this)
       switch(this.status){
         case 'available':
           return 'Готов печь вафли'

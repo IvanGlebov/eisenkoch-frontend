@@ -34,6 +34,7 @@ export default {
       robo_arm: require('./assets/robo_arm.svg'),
       robo_arm_top: require('./assets/arm_top.svg'),
       robo_arm_base: require('./assets/arm_base.svg'),
+
       left_oven: 'available', //    4 states ->
       right_oven: 'available', // -> available, busy, cooking, finishing
       left_oven_baking_duration: 0,
@@ -77,7 +78,7 @@ export default {
         case 'cooking':
           if (this.$data.left_oven_left <= 0) {
             this.$data.left_oven_left = 0
-            this.$data.left_oven = 'busy'
+            this.$data.left_oven = 'finishing'
           }
           this.$data.left_oven_left = this.$data.left_oven_left - this.$data.updateInterval / 1000
           break
@@ -90,7 +91,7 @@ export default {
         case 'cooking':
           if (this.$data.right_oven_left <= 0) {
             this.$data.right_oven_left = 0
-            this.$data.right_oven = 'busy'
+            this.$data.right_oven = 'finishing'
           }
           this.$data.right_oven_left = this.$data.right_oven_left - this.$data.updateInterval / 1000
           break
