@@ -29,7 +29,7 @@ export default {
     timeToString(number) {
       let minutes = number / 60
       let seconds = number % 60
-      return minutes.toFixed(0) + ':' + ((seconds > 9) ? seconds : '0' + seconds)
+      return Math.trunc(minutes) + ':' + ((seconds > 9) ? seconds : '0' + seconds)
     }
   },
   computed: {

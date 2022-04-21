@@ -41,8 +41,6 @@ export default {
       left_oven_left: 0,
       right_oven_baking_duration: 0,
       right_oven_left: 0,
-      left_oven_status: false,
-      right_oven_status: false,
       updateInterval: 1000,
       baseUrl: 'localhost:5000'
     }
@@ -113,7 +111,6 @@ export default {
       //   this.$data.right_oven = 'available'
       // }
     }, 1000)
-
   }
 }
 </script>
