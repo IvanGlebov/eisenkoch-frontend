@@ -5,12 +5,15 @@
         <img :src="videoQr" alt="Video qr code">
       </div>
       <div class="footer-video-content">
-        <iframe src="https://www.youtube.com/embed/UKAM6_tFuXk?version=3&playlist=UKAM6_tFuXk&loop=1&autoplay=1"
+        <video width="260" height="126" autoplay muted loop>
+          <source :src="video" type="video/mp4">
+        </video>
+        <!-- <iframe src="https://www.youtube.com/embed/UKAM6_tFuXk?version=3&playlist=UKAM6_tFuXk&loop=1&autoplay=1"
                 title="Eisenkoch story"
                 frameborder="0"
                 allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
-        </iframe>
+        </iframe> -->
       </div>
     </div>
     <div class="footer-links-wrapper">
@@ -35,6 +38,8 @@
 </template>
 
 <script>
+import video from '../assets/video.mp4';
+
 export default {
   name: "FooterLinks",
   data() {
@@ -46,8 +51,12 @@ export default {
       robonomicsNetworkQr: require('../assets/robonomicsNetworkQr.svg'),
       logoGear: require('../assets/logo_gear.svg'),
       logoName: require('../assets/logo_name.svg'),
-      videoLink: "https://www.youtube.com/watch?v=UKAM6_tFuXk"
+      // videoLink: "https://www.youtube.com/watch?v=UKAM6_tFuXk",
+      video,
     }
+  },
+  mounted() {
+    console.log(this.$data.video);
   }
 }
 </script>
