@@ -5,7 +5,7 @@
         <img :src="videoQr" alt="Video qr code">
       </div>
       <div class="footer-video-content">
-        <video width="260" height="126" autoplay muted loop>
+        <video width="170" height="85" autoplay muted loop>
           <source :src="video" type="video/mp4">
         </video>
         <!-- <iframe src="https://www.youtube.com/embed/UKAM6_tFuXk?version=3&playlist=UKAM6_tFuXk&loop=1&autoplay=1"
